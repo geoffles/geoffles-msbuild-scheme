@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project
+         ToolsVersion="4.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+    <!-- List Dependencies here -->
+    <PropertyGroup>
+        <SomeLibraryDependsOn Condition=" '$(ExplicitTargetsOnly)' != 'true' " >
+        </SomeLibraryDependsOn>
+    </PropertyGroup>
+     
+    <!-- Hook in to top level targets here -->
+    <ItemGroup>
+        <CleanAllDependsOn Include="CleanSomeLibrary" />
+        <BuildAllDependsOn Include="SomeLibrary"/>
+    </ItemGroup>
+
+    <!-- Projects to Build -->
+    <ItemGroup>
+        <SomeLibraryProjectsToBuild Include=".\SomeLibrary\SomeLibrary.csproj">
+           <Properties>Configuration=$(Configuration);Platform=$(Platform)</Properties>
+        </SomeLibraryProjectsToBuild>
+    </ItemGroup>
+ 
+    <!-- Build Targets -->
+    <Target Name="SomeLibrary"  DependsOnTargets="$(SomeLibraryDependsOn)">
+        <MSBuild Projects="@(SomeLibraryProjectsToBuild)" />
+    </Target>
+ 
+    <Target Name="CleanSomeLibrary">
+        <MSBuild Projects="@(SomeLibraryProjectsToBuild)" Targets="Clean" />
+    </Target>
+</Project> 

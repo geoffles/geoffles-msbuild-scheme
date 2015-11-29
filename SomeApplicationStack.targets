@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project
+         ToolsVersion="4.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <SomeApplicationStackDependsOn>
+            SomeProject;
+            ADependencysTargetName;
+        </SomeApplicationStackDependsOn>
+    </PropertyGroup>
+    
+    <Target Name="SomeApplicationStack" DependsOnTargets="$(SomeApplicationStackDependsOn)">
+        <Message Importance="High" Text="Application stack Included Targets:&#xD;&#xA;$(SomeApplicationStackDependsOn)" />
+    </Target>
+
+</Project>
