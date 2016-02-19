@@ -12,7 +12,7 @@
     <!-- Hook in to top level targets here -->
     <ItemGroup>
         <CleanAllDependsOn Include="CleanSomeLibrary" />
-        <BuildAllDependsOn Include="SomeLibrary"/>
+        <BuildAllDependsOn Condition="!$(ExcludeTargets.Contains('SomeLibrary'))" Include="SomeLibrary"/>
     </ItemGroup>
 
     <!-- Projects to Build -->

@@ -13,7 +13,7 @@
     <!-- Hook in to top level targets here -->
     <ItemGroup>
         <CleanAllDependsOn Include="CleanSomeProject" />
-        <BuildAllDependsOn Include="SomeProject"/>
+        <BuildAllDependsOn Condition="!$(ExcludeTargets.Contains('SomeProject'))" Include="SomeProject"/>
     </ItemGroup>
 
     <!-- Projects to Build -->

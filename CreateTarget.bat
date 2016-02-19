@@ -53,7 +53,7 @@ echo.
 echo     ^<^^!-- Hook in to top level targets here --^>
 echo     ^<ItemGroup^>
 echo         ^<CleanAllDependsOn Include="Clean%TargetName%" /^>
-echo         ^<BuildAllDependsOn Include="%TargetName%"/^>
+echo         ^<BuildAllDependsOn Condition="^!$(ExcludeTargets.Contains('%TargetName%'))" Include="%TargetName%"/^>
 echo     ^</ItemGroup^>
 echo.
 echo     ^<^^!-- Projects to Build --^>
